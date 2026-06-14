@@ -155,27 +155,8 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-orange-600 to-yellow-500 rounded-xl p-6 shadow-md relative overflow-hidden text-white">
-          <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-white opacity-10"></div>
-          <h2 className="text-lg font-bold mb-4 flex items-center">
-            <AlertTriangle size={20} className="mr-2" />
-            AI Insights
-          </h2>
-          <div className="space-y-4 relative z-10">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-              <p className="text-sm font-medium">WhatsApp performs 32% better than Email for your "High Value" segment.</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-              <p className="text-sm font-medium">125 customers are at risk of churn. Recommended action: Send Win-back campaign with 15% discount.</p>
-            </div>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-              <p className="text-sm font-medium">Sending SMS at 10:00 AM leads to the highest open rates locally.</p>
-            </div>
-            <button className="w-full py-2 bg-white text-red-600 font-semibold rounded-lg mt-2 hover:bg-red-50 transition-colors shadow-sm">
-              Take Action
-            </button>
-          </div>
-        </div>
+        
+        
       </div>
 
       {/* Toast Notification */}
