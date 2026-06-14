@@ -4,7 +4,7 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 
 // Load env
-dotenv.config({ override: true });
+dotenv.config();
 
 const app = express();
 
