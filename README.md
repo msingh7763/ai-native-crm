@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Xeno CRM Platform
 
 This project is a Customer Relationship Management (CRM) and Marketing platform designed to manage customers, orders, campaigns, segments, and analytics. It simulates a realistic marketing flow including message delivery and status tracking.
@@ -98,3 +99,6 @@ The typical lifecycle of a campaign within the Xeno CRM platform follows these s
    - The Channel Service fires a webhook back to the Server's `/api/webhook/receipt` endpoint with the determined status.
    - The Server updates the `CommunicationLog` for each customer.
    - The user views the Analytics Dashboard, which reflects the real-time aggregated metrics (Delivery Rate, Open Rate, Click Rate) of the campaign.
+=======
+# AI-native-CRM
+>>>>>>> 027bffe0226a8ddbe7e7658ae7dce79458f28f45
