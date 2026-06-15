@@ -146,7 +146,7 @@ const Customers = () => {
             setForm({ name: '', email: '', phone: '', city: '', totalSpent: '', lastOrderDate: '' });
             setShowModal(true);
           }}
-          className="flex items-center gap-2 bg-indigo-400 hover:bg-indigo-400 hover:bg-indigo-400 hover:bg-indigo-400-dark text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors"
+          className="flex items-center gap-2 bg-indigo-400 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors"
         >
           <Plus size={18} /> Add Customer
         </button>
@@ -181,7 +181,7 @@ const Customers = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-indigo-400 hover:bg-indigo-400 text-white uppercase text-xs font-semibold tracking-wider">
+            <thead className="bg-indigo-400 text-white uppercase text-xs font-semibold tracking-wider">
               <tr>
                 <th className="px-6 py-4">Name</th>
                 <th className="px-6 py-4">Email</th>
@@ -382,7 +382,7 @@ const Customers = () => {
     <button
       type="submit"
       disabled={submitting}
-      className="flex-1 py-3 rounded-xl bg-indigo-400 hover:bg-indigo-400 text-white font-semibold transition-all disabled:opacity-50"
+      className="flex-1 py-3 rounded-xl bg-indigo-400 hover:bg-indigo-500 text-white font-semibold transition-all disabled:opacity-50"
     >
       {submitting ? 'Saving...' : (editId ? 'Save Changes' : 'Add Customer')}
     </button>

@@ -24,8 +24,8 @@ const StatCard = ({ title, value, icon, colorClass, subtitle }) => (
   <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 card-hover">
     <div className="flex justify-between items-start">
       <div>
-        <p className="text-sm font-medium text-black/60 dark:text-white/70 dark:text-black/50 dark:text-white/60 mb-1">{title}</p>
-        <h3 className="text-3xl font-bold text-black dark:text-white dark:text-white">{value}</h3>
+        <p className="text-sm font-medium text-black/60 dark:text-white mb-1">{title}</p>
+        <h3 className="text-3xl font-bold text-black dark:text-white">{value}</h3>
         {subtitle && <p className="text-xs mt-2 text-emerald-600 dark:text-emerald-400 font-medium">{subtitle}</p>}
       </div>
       <div className={`p-3 rounded-xl ${colorClass}`}>{icon}</div>
@@ -99,7 +99,7 @@ const Dashboard = () => {
         <button
           onClick={handleGenerateData}
           disabled={generating}
-          className="bg-indigo-400 hover:bg-indigo-400 text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors disabled:opacity-50 text-sm"
+          className="bg-indigo-400 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors disabled:opacity-50 text-sm"
         >
           {generating ? 'Generating…' : 'Generate Demo Data'}
         </button>

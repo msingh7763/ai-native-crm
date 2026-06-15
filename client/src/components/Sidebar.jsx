@@ -32,8 +32,8 @@ const Sidebar = () => {
               className={({ isActive }) =>
                 `flex items-center px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
                   isActive
-                    ? 'bg-indigo-50 dark:bg-indigo-200/40 text-indigo-400 dark:text-indigo-300'
-                    : 'text-black dark:text-white dark:text-black/50 dark:text-white/60 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
+                    ? 'bg-indigo-400 text-white'
+                    : 'text-black dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
                 }`
               }
             >
@@ -51,8 +51,8 @@ const Sidebar = () => {
           className={({ isActive }) =>
             `flex items-center w-full px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-150 ${
               isActive
-                ? 'bg-indigo-50 dark:bg-indigo-200/40 text-indigo-400 dark:text-indigo-300'
-                : 'text-black dark:text-white dark:text-black/50 dark:text-white/60 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-slate-100'
+                ? 'bg-indigo-400 text-white'
+                : 'text-black dark:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
             }`
           }
         >

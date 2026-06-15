@@ -74,7 +74,7 @@ const Settings = () => {
             <button 
               onClick={handleClearCache}
               disabled={cacheStatus === 'loading'}
-              className="bg-indigo-400 hover:bg-indigo-400 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="bg-indigo-400 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg font-medium transition-colors disabled:opacity-50"
             >
               {cacheStatus === 'loading' ? 'Clearing...' : 'Clear Analytics Cache'}
             </button>

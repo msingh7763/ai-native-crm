@@ -88,7 +88,7 @@ const CampaignBuilder = () => {
           <button 
             onClick={handleGenerate}
             disabled={loading || !goal}
-            className="bg-indigo-400 hover:bg-indigo-400   px-8 py-3 rounded-xl font-medium shadow-sm transition-all disabled:opacity-50 flex items-center mx-auto text-white"
+            className="bg-indigo-400 hover:bg-indigo-500 text-white px-8 py-3 rounded-xl font-medium shadow-sm transition-all disabled:opacity-50 flex items-center mx-auto"
           >
             {loading ? 'AI is crafting your campaign...' : (
               <>
@@ -151,9 +151,9 @@ const CampaignBuilder = () => {
               ></textarea>
             </div>
 
-            <div className="bg-indigo-50 dark:bg-indigo-200/20 p-4 rounded-lg border border-indigo-100 dark:border-indigo-200/50">
-              <h3 className="text-sm font-bold text-indigo-200 dark:text-indigo-300 mb-1">Target Audience</h3>
-              <p className="text-sm text-indigo-400 dark:text-indigo-400">{campaign.targetSegmentDescription}</p>
+            <div className="bg-indigo-50 dark:bg-indigo-400/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-400/30">
+              <h3 className="text-sm font-bold text-indigo-700 dark:text-white mb-1">Target Audience</h3>
+              <p className="text-sm text-indigo-600 dark:text-white/80">{campaign.targetSegmentDescription}</p>
             </div>
 
             <div className="flex justify-end space-x-4 pt-4 border-t border-slate-200 dark:border-slate-700">
@@ -171,7 +171,7 @@ const CampaignBuilder = () => {
               <button 
                 onClick={handleLaunch}
                 disabled={launching}
-                className="bg-indigo-400 hover:bg-indigo-400   px-8 py-2 rounded-lg font-medium shadow-sm transition-colors flex items-center disabled:opacity-50 text-white"
+                className="bg-indigo-400 hover:bg-indigo-500 text-white px-8 py-2 rounded-lg font-medium shadow-sm transition-colors flex items-center disabled:opacity-50"
               >
                 {launching ? 'Launching...' : (
                   <>

@@ -67,7 +67,7 @@ const AudienceBuilder = () => {
         <button 
           onClick={handleBuild}
           disabled={loading || !prompt}
-          className="w-full bg-indigo-400 hover:bg-indigo-400 font-medium py-3 rounded-lg flex items-center justify-center transition-colors shadow-sm disabled:opacity-50"
+          className="w-full bg-indigo-400 hover:bg-indigo-500 text-white font-medium py-3 rounded-lg flex items-center justify-center transition-colors shadow-sm disabled:opacity-50"
         >
           {loading ? 'Analyzing data...' : (
             <>
@@ -100,7 +100,7 @@ const AudienceBuilder = () => {
           <div className="flex justify-end">
             <button
               onClick={() => navigate('/campaigns/new', { state: { segmentPrompt: prompt, segmentQuery: result.query } })}
-              className="bg-indigo-400 hover:bg-indigo-400 px-6 py-2 rounded-lg font-medium shadow-sm transition-colors text-white"
+              className="bg-indigo-400 hover:bg-indigo-500 text-white px-6 py-2 rounded-lg font-medium shadow-sm transition-colors"
             >
               Create Campaign for this Segment
             </button>
