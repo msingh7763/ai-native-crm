@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary:       #4f46e5; /* Indigo-600 — main accent */
-  --color-primary-dark:  #4338ca; /* Indigo-700 — hover */
+  --color-primary:       #818cf8; /* indigo-400 — lighter main accent */
+  --color-primary-dark:  #6366f1; /* indigo-400 — hover */
   --color-secondary:     #06b6d4; /* Cyan-500 — secondary accent */
   --color-secondary-light: #22d3ee; /* Cyan-400 */
 

@@ -38,7 +38,7 @@ const AudienceBuilder = () => {
         </label>
         <div className="relative">
           <textarea
-            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 pl-12 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all min-h-[120px] resize-none"
+            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 pl-12 focus:ring-2 focus:ring-indigo-300 focus:border-transparent transition-all min-h-[120px] resize-none"
             placeholder='e.g., "Customers who spent more than ₹5000 and havent ordered in 60 days"'
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
@@ -67,7 +67,7 @@ const AudienceBuilder = () => {
         <button 
           onClick={handleBuild}
           disabled={loading || !prompt}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 font-medium py-3 rounded-lg flex items-center justify-center transition-colors shadow-sm disabled:opacity-50"
+          className="w-full bg-indigo-400 hover:bg-indigo-400 font-medium py-3 rounded-lg flex items-center justify-center transition-colors shadow-sm disabled:opacity-50"
         >
           {loading ? 'Analyzing data...' : (
             <>
@@ -82,7 +82,7 @@ const AudienceBuilder = () => {
         <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold dark: flex items-center">
-              <Users size={24} className="mr-2 text-indigo-500" />
+              <Users size={24} className="mr-2 text-indigo-300" />
               {result.audienceCount} Customers Found
             </h2>
             <div className="bg-red-100 dark:bg-slate-800/30   dark:  px-3 py-1 rounded-full text-sm font-medium text-white">
@@ -100,7 +100,7 @@ const AudienceBuilder = () => {
           <div className="flex justify-end">
             <button
               onClick={() => navigate('/campaigns/new', { state: { segmentPrompt: prompt, segmentQuery: result.query } })}
-              className="bg-indigo-600 hover:bg-indigo-700 px-6 py-2 rounded-lg font-medium shadow-sm transition-colors text-white"
+              className="bg-indigo-400 hover:bg-indigo-400 px-6 py-2 rounded-lg font-medium shadow-sm transition-colors text-white"
             >
               Create Campaign for this Segment
             </button>

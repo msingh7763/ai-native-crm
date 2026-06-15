@@ -99,7 +99,7 @@ const Dashboard = () => {
         <button
           onClick={handleGenerateData}
           disabled={generating}
-          className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors disabled:opacity-50 text-sm"
+          className="bg-indigo-400 hover:bg-indigo-400 text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors disabled:opacity-50 text-sm"
         >
           {generating ? 'Generating…' : 'Generate Demo Data'}
         </button>
@@ -107,11 +107,11 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <StatCard title="Total Customers" value={stats?.totalCustomers || 0}
-          icon={<Users size={22} className="text-indigo-600" />}
-          colorClass="bg-indigo-50 dark:bg-indigo-900/30"
+          icon={<Users size={22} className="text-indigo-400" />}
+          colorClass="bg-indigo-50 dark:bg-indigo-200/30"
           subtitle="+12% from last month" />
         <StatCard title="Campaigns Sent" value={stats?.totalCampaigns || 0}
-          icon={<Megaphone size={22} className="text-violet-600" />}
+          icon={<Megaphone size={22} className="text-violet-400" />}
           colorClass="bg-violet-50 dark:bg-violet-900/30" />
         <StatCard title="Avg Open Rate" value={`${stats?.openRate || 0}%`}
           icon={<CheckCircle size={22} className="text-emerald-600" />}

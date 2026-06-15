@@ -39,7 +39,7 @@ const Settings = () => {
             <span>Dark Mode</span>
             <button 
               onClick={() => setDarkMode(!darkMode)}
-              className={`w-12 h-6 rounded-full flex items-center transition-colors px-1 ${darkMode ? 'bg-indigo-500' : 'bg-red-200'}`}
+              className={`w-12 h-6 rounded-full flex items-center transition-colors px-1 ${darkMode ? 'bg-indigo-300' : 'bg-red-200'}`}
             >
               <div className={`bg-white w-4 h-4 rounded-full shadow-sm transform transition-transform ${darkMode ? 'translate-x-6' : 'translate-x-0'}`} />
             </button>
@@ -74,7 +74,7 @@ const Settings = () => {
             <button 
               onClick={handleClearCache}
               disabled={cacheStatus === 'loading'}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
+              className="bg-indigo-400 hover:bg-indigo-400 text-white px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity disabled:opacity-50"
             >
               {cacheStatus === 'loading' ? 'Clearing...' : 'Clear Analytics Cache'}
             </button>
@@ -84,7 +84,7 @@ const Settings = () => {
               </span>
             )}
             {cacheStatus === 'error' && (
-              <span className="ml-4 text-indigo-600 flex items-center text-sm font-medium">
+              <span className="ml-4 text-indigo-400 flex items-center text-sm font-medium">
                 <AlertCircle size={16} className="mr-1" /> Failed to clear cache
               </span>
             )}

@@ -46,7 +46,7 @@ const StatBox = ({ value, label, colorText, colorBg }) => (
 const PulsingDot = () => (
   <span className="relative flex h-2 w-2 mr-1.5">
     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75" />
-    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500" />
+    <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-300" />
   </span>
 );
 
@@ -143,7 +143,7 @@ const CampaignCard = ({ campaign, onCompleted, onDeleted }) => {
         {/* Top row: badge + date */}
         <div className="flex justify-between items-center mb-4">
           {isRunning ? (
-            <span className="flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-indigo-50 dark:bg-indigo-900/40 border border-indigo-200 dark:border-indigo-700 text-indigo-700 dark:text-indigo-300">
+            <span className="flex items-center px-2.5 py-1 text-xs font-semibold rounded-full bg-indigo-50 dark:bg-indigo-200/40 border border-indigo-200 dark:border-indigo-400 text-indigo-400 dark:text-indigo-300">
               <PulsingDot />
               Running
             </span>
@@ -175,7 +175,7 @@ const CampaignCard = ({ campaign, onCompleted, onDeleted }) => {
             </div>
             <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-1.5">
               <div
-                className="bg-indigo-500 h-1.5 rounded-full transition-all duration-700"
+                className="bg-indigo-300 h-1.5 rounded-full transition-all duration-700"
                 style={{ width: `${dispatchPct}%` }}
               />
             </div>
@@ -188,10 +188,10 @@ const CampaignCard = ({ campaign, onCompleted, onDeleted }) => {
             colorText="text-emerald-600 dark:text-emerald-400"
             colorBg="bg-emerald-50 dark:bg-emerald-900/20" />
           <StatBox value={stats.openRate} label="Opened"
-            colorText="text-indigo-600 dark:text-indigo-400"
-            colorBg="bg-indigo-50 dark:bg-indigo-900/20" />
+            colorText="text-indigo-400 dark:text-indigo-400"
+            colorBg="bg-indigo-50 dark:bg-indigo-200/20" />
           <StatBox value={stats.clickRate} label="Clicked"
-            colorText="text-violet-600 dark:text-violet-400"
+            colorText="text-violet-400 dark:text-violet-400"
             colorBg="bg-violet-50 dark:bg-violet-900/20" />
           <StatBox value={stats.conversionRate} label="Orders"
             colorText="text-cyan-600 dark:text-cyan-400"
@@ -210,7 +210,7 @@ const CampaignCard = ({ campaign, onCompleted, onDeleted }) => {
       {/* Card footer */}
       <div className="bg-slate-50 dark:bg-slate-700/40 px-4 py-3 flex justify-between items-center text-sm">
         <div className="flex items-center font-medium text-black dark:text-white dark:text-white">
-          <Megaphone size={15} className="mr-2 text-indigo-500" />
+          <Megaphone size={15} className="mr-2 text-indigo-300" />
           {campaign.channel}
         </div>
         <div className="flex items-center gap-3">
