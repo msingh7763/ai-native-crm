@@ -32,13 +32,13 @@ const AudienceBuilder = () => {
         <p className="dark:text-black-700">Describe your target audience in plain English, and AI will build the segment.</p>
       </div>
 
-      <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-red-100 dark:border-gray-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
         <label className="block text-sm font-medium dark:text-gray-700 mb-2">
           Who do you want to target?
         </label>
         <div className="relative">
           <textarea
-            className="w-full bg-red-50 dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg p-4 pl-12 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all min-h-[120px] resize-none"
+            className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 pl-12 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all min-h-[120px] resize-none"
             placeholder='e.g., "Customers who spent more than ₹5000 and havent ordered in 60 days"'
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
@@ -52,7 +52,7 @@ const AudienceBuilder = () => {
             <button 
               key={suggestion}
               onClick={() => setPrompt(suggestion)}
-              className="text-xs bg-red-50 dark:bg-gray-800/30   dark:  px-3 py-1 rounded-full hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors border border-red-100 dark:border-gray-800 text-white"
+              className="text-xs bg-slate-50 dark:bg-slate-800/30   dark:  px-3 py-1 rounded-full hover:bg-red-100 dark:hover:bg-red-900/50 transition-colors border border-slate-200 dark:border-gray-800 text-white"
             >
               {suggestion}
             </button>
@@ -60,14 +60,14 @@ const AudienceBuilder = () => {
         </div>
 
         {error && (
-          <div className="mb-4 flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+          <div className="mb-4 flex items-center gap-2 text-sm text-red-600 bg-slate-50 border border-slate-200 rounded-lg px-4 py-3">
             <AlertCircle size={16} />{error}
           </div>
         )}
         <button 
           onClick={handleBuild}
           disabled={loading || !prompt}
-          className="w-full bg-gradient-to-r from-red-600 to-indigo-600 hover:from-red-700 hover:to-indigo-700 font-medium py-3 rounded-lg flex items-center justify-center transition-colors shadow-sm disabled:opacity-50"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 font-medium py-3 rounded-lg flex items-center justify-center transition-colors shadow-sm disabled:opacity-50"
         >
           {loading ? 'Analyzing data...' : (
             <>
@@ -79,18 +79,18 @@ const AudienceBuilder = () => {
       </div>
 
       {result && (
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-red-100 dark:border-gray-700 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-200 dark:border-slate-700 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold dark: flex items-center">
               <Users size={24} className="mr-2 text-indigo-500" />
               {result.audienceCount} Customers Found
             </h2>
-            <div className="bg-red-100 dark:bg-gray-800/30   dark:  px-3 py-1 rounded-full text-sm font-medium text-white">
+            <div className="bg-red-100 dark:bg-slate-800/30   dark:  px-3 py-1 rounded-full text-sm font-medium text-white">
               Ready to Target
             </div>
           </div>
           
-          <div className="bg-red-50 dark:bg-gray-800 rounded-lg p-4 mb-6 border border-red-200 dark:border-gray-700 font-mono text-sm overflow-x-auto   dark: text-white">
+          <div className="bg-slate-50 dark:bg-slate-800 rounded-lg p-4 mb-6 border border-slate-200 dark:border-slate-700 font-mono text-sm overflow-x-auto   dark: text-white">
             <div className="flex items-center text-xs mb-2 font-sans">
               <Code size={14} className="mr-1" /> Generated MongoDB Query
             </div>

@@ -146,16 +146,16 @@ const Customers = () => {
             setForm({ name: '', email: '', phone: '', city: '', totalSpent: '', lastOrderDate: '' });
             setShowModal(true);
           }}
-          className="flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors"
+          className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 hover:bg-indigo-600 hover:bg-indigo-700-dark text-white px-4 py-2 rounded-lg font-medium shadow-sm transition-colors"
         >
           <Plus size={18} /> Add Customer
         </button>
       </div>
 
       {/* Table */}
-      <div className="bg-white dark:bg-red-900 rounded-xl shadow-sm border border-red-100 dark:border-red-800 overflow-hidden">
-        <div className="p-4 border-b border-red-100 dark:border-red-800 flex justify-between items-center">
-          <div className="flex items-center bg-red-50 dark:bg-red-800 rounded-lg px-3 py-2 w-80 border border-red-200 dark:border-red-700">
+      <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+        <div className="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
+          <div className="flex items-center bg-slate-50 dark:bg-slate-700 rounded-lg px-3 py-2 w-80 border border-slate-200 dark:border-slate-600">
             <Search size={18} className="text-primary mr-2" />
             <input
               type="text"
@@ -165,7 +165,7 @@ const Customers = () => {
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="flex items-center gap-2 bg-red-50 dark:bg-red-800 px-3 py-2 rounded-lg border border-red-200 dark:border-red-700 hover:bg-red-100 transition-colors text-sm font-medium">
+          <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-700 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-100 transition-colors text-sm font-medium">
             <Filter size={16} />
             <select
               className="bg-transparent border-none outline-none font-medium cursor-pointer"
@@ -181,7 +181,7 @@ const Customers = () => {
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
-            <thead className="bg-primary text-white uppercase text-xs font-semibold tracking-wider">
+            <thead className="bg-indigo-600 hover:bg-indigo-700 text-white uppercase text-xs font-semibold tracking-wider">
               <tr>
                 <th className="px-6 py-4">Name</th>
                 <th className="px-6 py-4">Email</th>
@@ -209,7 +209,7 @@ const Customers = () => {
                     key={c._id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="border-b border-red-50 dark:border-red-800 hover:bg-red-50 dark:hover:bg-red-800/50 transition-colors"
+                    className="border-b border-red-50 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
                   >
                     <td className="px-6 py-4 font-semibold">{c.name}</td>
                     <td className="px-6 py-4">{c.email}</td>
@@ -249,9 +249,9 @@ const Customers = () => {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="bg-white dark:bg-red-900 rounded-2xl shadow-2xl w-full max-w-md border border-red-100 dark:border-red-800"
+              className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl w-full max-w-md border border-slate-100 dark:border-slate-700"
             >
-              <div className="p-6 border-b border-red-100 dark:border-red-800 flex justify-between items-center">
+              <div className="p-6 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
                 <h2 className="text-xl font-bold">{editId ? 'Edit Customer' : 'Add New Customer'}</h2>
                 <button type="button" onClick={() => setShowModal(false)} className="p-1 hover:text-primary transition-colors">
                   <X size={22} />
@@ -274,7 +274,7 @@ const Customers = () => {
       onChange={(e) =>
         setForm({ ...form, name: e.target.value })
       }
-      className="w-full px-4 py-3 rounded-xl border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-800 outline-none focus:ring-2 focus:ring-red-500"
+      className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 outline-none focus:ring-2 focus:ring-indigo-500"
     />
   </div>
 
@@ -292,7 +292,7 @@ const Customers = () => {
       onChange={(e) =>
         setForm({ ...form, email: e.target.value })
       }
-      className="w-full px-4 py-3 rounded-xl border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-800 outline-none focus:ring-2 focus:ring-red-500"
+      className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 outline-none focus:ring-2 focus:ring-indigo-500"
     />
   </div>
 
@@ -310,7 +310,7 @@ const Customers = () => {
       onChange={(e) =>
         setForm({ ...form, phone: e.target.value })
       }
-      className="w-full px-4 py-3 rounded-xl border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-800 outline-none focus:ring-2 focus:ring-red-500"
+      className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 outline-none focus:ring-2 focus:ring-indigo-500"
     />
   </div>
 
@@ -328,7 +328,7 @@ const Customers = () => {
       onChange={(e) =>
         setForm({ ...form, city: e.target.value })
       }
-      className="w-full px-4 py-3 rounded-xl border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-800 outline-none focus:ring-2 focus:ring-red-500"
+      className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 outline-none focus:ring-2 focus:ring-indigo-500"
     />
   </div>
 
@@ -346,7 +346,7 @@ const Customers = () => {
       onChange={(e) =>
         setForm({ ...form, totalSpent: e.target.value })
       }
-      className="w-full px-4 py-3 rounded-xl border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-800 outline-none focus:ring-2 focus:ring-red-500"
+      className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 outline-none focus:ring-2 focus:ring-indigo-500"
     />
   </div>
 
@@ -365,7 +365,7 @@ const Customers = () => {
           lastOrderDate: e.target.value
         })
       }
-      className="w-full px-4 py-3 rounded-xl border border-red-200 dark:border-red-700 bg-red-50 dark:bg-red-800 outline-none focus:ring-2 focus:ring-red-500"
+      className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 outline-none focus:ring-2 focus:ring-indigo-500"
     />
   </div>
 
@@ -374,7 +374,7 @@ const Customers = () => {
     <button
       type="button"
       onClick={() => setShowModal(false)}
-      className="flex-1 py-3 rounded-xl border border-red-200 dark:border-red-700 font-medium hover:bg-red-50"
+      className="flex-1 py-3 rounded-xl border border-slate-200 dark:border-slate-600 font-medium hover:bg-slate-50"
     >
       Cancel
     </button>
@@ -382,7 +382,7 @@ const Customers = () => {
     <button
       type="submit"
       disabled={submitting}
-      className="flex-1 py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold transition-all disabled:opacity-50"
+      className="flex-1 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold transition-all disabled:opacity-50"
     >
       {submitting ? 'Saving...' : (editId ? 'Save Changes' : 'Add Customer')}
     </button>

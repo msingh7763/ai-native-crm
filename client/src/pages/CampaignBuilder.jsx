@@ -61,8 +61,8 @@ const CampaignBuilder = () => {
       </div>
 
       {!campaign ? (
-        <div className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-sm border border-red-100 dark:border-gray-700 text-center">
-          <div className="w-16 h-16 bg-red-100 dark:bg-gray-800/50 rounded-full flex items-center justify-center mx-auto mb-6 text-white">
+        <div className="bg-white dark:bg-slate-800 rounded-xl p-8 shadow-sm border border-slate-200 dark:border-slate-700 text-center">
+          <div className="w-16 h-16 bg-red-100 dark:bg-slate-800/50 rounded-full flex items-center justify-center mx-auto mb-6 text-white">
             <Target size={32} className="dark:" />
           </div>
           <h2 className="text-xl font-bold dark: mb-2">What is your campaign goal?</h2>
@@ -72,7 +72,7 @@ const CampaignBuilder = () => {
           
           <div className="max-w-xl mx-auto relative mb-4">
             <textarea
-              className="w-full bg-red-50 dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-xl p-4 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all min-h-25 resize-none"
+              className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all min-h-25 resize-none"
               placeholder='Type your goal here...'
               value={goal}
               onChange={(e) => setGoal(e.target.value)}
@@ -80,7 +80,7 @@ const CampaignBuilder = () => {
           </div>
 
           {error && (
-            <div className="max-w-xl mx-auto mb-4 flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+            <div className="max-w-xl mx-auto mb-4 flex items-center gap-2 text-sm text-red-600 bg-slate-50 border border-slate-200 rounded-lg px-4 py-3">
               <AlertCircle size={16} />{error}
             </div>
           )}
@@ -88,7 +88,7 @@ const CampaignBuilder = () => {
           <button 
             onClick={handleGenerate}
             disabled={loading || !goal}
-            className="bg-red-600 hover:bg-red-700   px-8 py-3 rounded-xl font-medium shadow-sm transition-all disabled:opacity-50 flex items-center mx-auto text-white"
+            className="bg-indigo-600 hover:bg-indigo-700   px-8 py-3 rounded-xl font-medium shadow-sm transition-all disabled:opacity-50 flex items-center mx-auto text-white"
           >
             {loading ? 'AI is crafting your campaign...' : (
               <>
@@ -99,8 +99,8 @@ const CampaignBuilder = () => {
           </button>
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-red-100 dark:border-gray-700 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className="p-6 border-b border-red-200 dark:border-gray-700 bg-linear-to-r from-red-50 to-indigo-50 dark:from-red-800 dark:to-red-800">
+        <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-500">
+          <div className="p-6 border-b border-slate-200 dark:border-slate-700 bg-linear-to-r from-red-50 to-indigo-50 dark:from-slate-800 dark:to-slate-800">
             <div className="flex justify-between items-center">
               <div>
                 <p className="text-sm font-medium dark: mb-1 flex items-center">
@@ -115,7 +115,7 @@ const CampaignBuilder = () => {
                   />
                 </h2>
               </div>
-              <div className="bg-white dark:bg-gray-700 px-4 py-2 rounded-lg border border-red-200 dark:border-red-600 flex items-center">
+              <div className="bg-white dark:bg-slate-700 px-4 py-2 rounded-lg border border-slate-200 dark:border-red-600 flex items-center">
                 <MessageSquare size={18} className="mr-2" />
                 <select 
                   value={campaign.recommendedChannel}
@@ -136,7 +136,7 @@ const CampaignBuilder = () => {
               <label className="block text-sm font-medium dark: mb-2">Subject Line</label>
               <input 
                 type="text"
-                className="w-full bg-red-50 dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg p-3   dark: text-white"
+                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3   dark: text-white"
                 value={campaign.subjectLine}
                 onChange={e => setCampaign({...campaign, subjectLine: e.target.value})}
               />
@@ -145,7 +145,7 @@ const CampaignBuilder = () => {
             <div>
               <label className="block text-sm font-medium dark: mb-2">Message Content</label>
               <textarea 
-                className="w-full bg-red-50 dark:bg-gray-800 border border-red-200 dark:border-gray-700 rounded-lg p-4   dark:  min-h-37.5 text-white"
+                className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4   dark:  min-h-37.5 text-white"
                 value={campaign.message}
                 onChange={e => setCampaign({...campaign, message: e.target.value})}
               ></textarea>
@@ -156,22 +156,22 @@ const CampaignBuilder = () => {
               <p className="text-sm text-indigo-600 dark:text-indigo-400">{campaign.targetSegmentDescription}</p>
             </div>
 
-            <div className="flex justify-end space-x-4 pt-4 border-t border-red-200 dark:border-gray-700">
+            <div className="flex justify-end space-x-4 pt-4 border-t border-slate-200 dark:border-slate-700">
               {error && (
-                <div className="flex-1 flex items-center gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
+                <div className="flex-1 flex items-center gap-2 text-sm text-red-600 bg-slate-50 border border-slate-200 rounded-lg px-4 py-2">
                   <AlertCircle size={16} />{error}
                 </div>
               )}
               <button 
                 onClick={() => setCampaign(null)}
-                className="px-6 py-2 rounded-lg font-medium hover:bg-red-100 dark: dark:hover:bg-red-700 transition-colors"
+                className="px-6 py-2 rounded-lg font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
               >
                 Discard
               </button>
               <button 
                 onClick={handleLaunch}
                 disabled={launching}
-                className="bg-red-600 hover:bg-red-700   px-8 py-2 rounded-lg font-medium shadow-sm transition-colors flex items-center disabled:opacity-50 text-white"
+                className="bg-indigo-600 hover:bg-indigo-700   px-8 py-2 rounded-lg font-medium shadow-sm transition-colors flex items-center disabled:opacity-50 text-white"
               >
                 {launching ? 'Launching...' : (
                   <>
