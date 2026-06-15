@@ -104,6 +104,54 @@ exports.generateCampaign = async (req, res) => {
   }
 };
 
+exports.getCampaignStats = async (req, res) => {
+  try {
+    const campaign = await Campaign.findById(req.params.id).lean();
+    if (!campaign) return res.status(404).json({ message: 'Campaign not found' });
+
+    const statusCounts = await CommunicationLog.aggregate([
+      { $match: { campaignId: campaign._id } },
+      { $group: { _id: '$status', count: { $sum: 1 } } },
+    ]);
+
+    const stats = {};
+    for (const row of statusCounts) stats[row._id] = row.count;
+
+    const sent = Object.values(stats).reduce((sum, n) => sum + n, 0);
+    const delivered = (stats.Delivered || 0) + (stats.Opened || 0) + (stats.Read || 0) + (stats.Clicked || 0) + (stats.Converted || 0);
+    const opened = (stats.Opened || 0) + (stats.Read || 0) + (stats.Clicked || 0) + (stats.Converted || 0);
+    const clicked = (stats.Clicked || 0) + (stats.Converted || 0);
+    const converted = stats.Converted || 0;
+    const failed = stats.Failed || 0;
+    const pending = stats.Pending || 0;
+
+    // Auto-complete: mark campaign as Completed when no messages are Pending
+    if (campaign.status === 'Running' && sent > 0 && pending === 0) {
+      await Campaign.findByIdAndUpdate(campaign._id, { status: 'Completed' });
+      campaign.status = 'Completed';
+    }
+
+    res.json({
+      status: campaign.status,
+      stats: {
+        sent,
+        delivered,
+        opened,
+        clicked,
+        failed,
+        converted,
+        pending,
+        deliveryRate: sent ? ((delivered / sent) * 100).toFixed(1) : '0.0',
+        openRate: sent ? ((opened / sent) * 100).toFixed(1) : '0.0',
+        clickRate: sent ? ((clicked / sent) * 100).toFixed(1) : '0.0',
+        conversionRate: sent ? ((converted / sent) * 100).toFixed(1) : '0.0',
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.saveAndLaunchCampaign = async (req, res) => {
   try {
     const { name, goal, subjectLine, message, channel, targetSegment } = req.body;
@@ -117,6 +165,9 @@ exports.saveAndLaunchCampaign = async (req, res) => {
       status: 'Running', audienceCount: customers.length
     });
     await campaign.save();
+
+    let completed = 0;
+    const total = customers.length;
 
     // Offload to background queue
     customers.forEach(customer => {
@@ -147,6 +198,21 @@ exports.saveAndLaunchCampaign = async (req, res) => {
         } catch (err) {
           await CommunicationLog.findByIdAndUpdate(log._id, { status: 'Failed' });
           console.error("Failed to send to channel service:", err.message);
+        }
+
+        completed++;
+        // Mark campaign as Completed when all messages have been dispatched
+        if (completed === total) {
+          // Give a brief moment for final webhook callbacks to land
+          setTimeout(async () => {
+            const pendingCount = await CommunicationLog.countDocuments({
+              campaignId: campaign._id,
+              status: 'Pending'
+            });
+            if (pendingCount === 0) {
+              await Campaign.findByIdAndUpdate(campaign._id, { status: 'Completed' });
+            }
+          }, 5000);
         }
       });
     });

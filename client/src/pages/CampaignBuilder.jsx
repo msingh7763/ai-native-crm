@@ -57,7 +57,7 @@ const CampaignBuilder = () => {
     <div className="max-w-4xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl font-bold dark:text-black">AI Campaign Builder</h1>
-        <p className="dark:text-black-700">Tell AI what you want to achieve, and it will craft the perfect campaign.</p>
+        <p className="dark:text-black-800">Tell AI what you want to achieve, and it will craft the perfect campaign.</p>
       </div>
 
       {!campaign ? (

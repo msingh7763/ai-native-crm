@@ -138,7 +138,7 @@ const Customers = () => {
       <div className="flex justify-between items-end">
         <div>
           <h1 className="text-2xl font-bold">Customers</h1>
-          <p className="text-sm opacity-70 mt-1">Manage your audience data. Total: <strong>{customers.length}</strong></p>
+          <p className="text-sm opacity-70 mt-1 text-black-800">Manage your audience data. Total: <strong>{customers.length}</strong></p>
         </div>
         <button
           onClick={() => {

@@ -8,6 +8,7 @@ export const addCustomer = (data) => axios.post(`${API_URL}/customers`, data);
 export const updateCustomer = (id, data) => axios.put(`${API_URL}/customers/${id}`, data);
 export const deleteCustomer = (id) => axios.delete(`${API_URL}/customers/${id}`);
 export const getCampaigns = () => axios.get(`${API_URL}/campaigns`);
+export const getCampaignStats = (id) => axios.get(`${API_URL}/campaigns/${id}/stats`);
 
 export const buildSegment = (prompt) => axios.post(`${API_URL}/segments/build`, { prompt });
 export const generateCampaignContent = (goal) => axios.post(`${API_URL}/campaigns/generate`, { goal });

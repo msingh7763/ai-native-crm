@@ -99,7 +99,7 @@ const Dashboard = () => {
       <div className="flex justify-between items-end">
         <div>
           <h1 className="text-2xl font-bold dark:text-black">Dashboard Overview</h1>
-          <p className="dark:text-black-700">Welcome back! Here's what's happening with your campaigns today.</p>
+          <p className="dark:text-black-800">Welcome back! Here's what's happening with your campaigns today.</p>
         </div>
         <button 
           onClick={handleGenerateData} 
