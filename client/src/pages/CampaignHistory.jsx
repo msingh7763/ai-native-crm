@@ -276,8 +276,8 @@ const CampaignHistory = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-black dark:text-white dark:text-white">Campaign History</h1>
-        <p className="text-sm text-black/60 dark:text-white/70 dark:text-black/50 dark:text-white/60 mt-1">Track and analyze your past broadcasts.</p>
+        <h1 className="text-2xl font-bold text-amber-500">Campaign History</h1>
+        <p className="text-sm text-amber-800 mt-1">Track and analyze your past broadcasts.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
