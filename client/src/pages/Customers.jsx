@@ -156,19 +156,19 @@ const Customers = () => {
       <div className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
         <div className="p-4 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center">
           <div className="flex items-center bg-slate-50 dark:bg-slate-700 rounded-lg px-3 py-2 w-80 border border-slate-200 dark:border-slate-600">
-            <Search size={18} className="text-primary mr-2" />
+            <Search size={18} className="text-black/50 dark:text-white mr-2" />
             <input
               type="text"
               placeholder="Search by name or email..."
-              className="bg-transparent border-none outline-none text-sm w-full"
+              className="bg-transparent border-none outline-none text-sm w-full text-black dark:text-white placeholder-slate-400"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-          <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-700 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-100 transition-colors text-sm font-medium">
+          <div className="flex items-center gap-2 bg-slate-50 dark:bg-slate-700 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-600 hover:bg-slate-100 transition-colors text-sm font-medium text-black dark:text-white">
             <Filter size={16} />
             <select
-              className="bg-transparent border-none outline-none font-medium cursor-pointer"
+              className="bg-transparent border-none outline-none font-medium cursor-pointer text-black dark:text-white"
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
             >
@@ -194,10 +194,10 @@ const Customers = () => {
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan="7" className="px-6 py-12 text-center opacity-60">Loading customers...</td></tr>
+                <tr><td colSpan="7" className="px-6 py-12 text-center text-black dark:text-white opacity-60">Loading customers...</td></tr>
               ) : filtered.length === 0 ? (
                 <tr>
-                  <td colSpan="7" className="px-6 py-12 text-center opacity-60">
+                  <td colSpan="7" className="px-6 py-12 text-center text-black dark:text-white opacity-60">
                     {customers.length === 0
                       ? 'No customers yet. Click "Add Customer" or go to Dashboard → "Generate Demo Data".'
                       : 'No customers match your search.'}
@@ -209,14 +209,14 @@ const Customers = () => {
                     key={c._id}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="border-b border-red-50 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors"
+                    className="border-b border-red-50 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors text-black dark:text-white"
                   >
                     <td className="px-6 py-4 font-semibold">{c.name}</td>
                     <td className="px-6 py-4">{c.email}</td>
-                    <td className="px-6 py-4 opacity-70">{c.phone || '—'}</td>
+                    <td className="px-6 py-4">{c.phone || '—'}</td>
                     <td className="px-6 py-4">{c.city || '—'}</td>
-                    <td className="px-6 py-4 font-semibold text-primary">₹{(c.totalSpent || 0).toLocaleString()}</td>
-                    <td className="px-6 py-4 opacity-70">{c.lastOrderDate ? new Date(c.lastOrderDate).toLocaleDateString() : 'Never'}</td>
+                    <td className="px-6 py-4 font-semibold text-indigo-400">₹{(c.totalSpent || 0).toLocaleString()}</td>
+                    <td className="px-6 py-4">{c.lastOrderDate ? new Date(c.lastOrderDate).toLocaleDateString() : 'Never'}</td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
                         <button onClick={() => handleEditClick(c)} className="text-gray-400 hover:text-blue-500 transition-colors">
