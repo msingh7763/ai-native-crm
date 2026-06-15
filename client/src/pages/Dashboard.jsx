@@ -93,8 +93,8 @@ const Dashboard = () => {
     <div className="space-y-6">
       <div className="flex justify-between items-end">
         <div>
-          <h1 className="text-2xl font-bold text-black dark:text-white dark:text-white">Dashboard</h1>
-          <p className="text-sm text-black/60 dark:text-white/70 dark:text-black/50 dark:text-white/60 mt-1">Welcome back — here's what's happening today.</p>
+          <h1 className="text-2xl font-bold text-amber-500">Dashboard</h1>
+          <p className="text-sm text-amber-800 mt-1">Welcome back — here's what's happening today.</p>
         </div>
         <button
           onClick={handleGenerateData}
