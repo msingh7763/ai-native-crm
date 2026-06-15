@@ -199,89 +199,59 @@ exports.getCampaignStats = async (req, res) => {
   }
 };
 
-// Simulate delivery locally — same probability logic as the channel service
-// Used as fallback when CHANNEL_SERVICE_URL is not set (avoids localhost calls in production)
-const simulateDelivery = (logId) => {
-  const delay = Math.floor(Math.random() * 3000) + 2000;
+// Sleep helper — keeps the delay simulation without relying on detached setTimeout
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-  setTimeout(async () => {
-    const rand = Math.random() * 100;
-    let status;
-    if      (rand < 10) status = 'Failed';
-    else if (rand < 30) status = 'Delivered';
-    else if (rand < 65) status = 'Opened';
-    else if (rand < 85) status = 'Read';
-    else if (rand < 95) status = 'Clicked';
-    else                status = 'Converted';
-
-    try {
-      // Update this log's status
-      const updatedLog = await CommunicationLog.findByIdAndUpdate(
-        logId,
-        { status },
-        { returnDocument: 'after' }
-      );
-
-      if (!updatedLog) return;
-
-      // Clear analytics cache so dashboard reflects new data
-      const { clearCache } = require('../services/inMemoryCache');
-      clearCache('analytics_dashboard');
-
-      // Check if all logs for this campaign are resolved (no more Pending)
-      const pendingCount = await CommunicationLog.countDocuments({
-        campaignId: updatedLog.campaignId,
-        status: 'Pending',
-      });
-
-      if (pendingCount === 0) {
-        await Campaign.findByIdAndUpdate(updatedLog.campaignId, { status: 'Completed' });
-        console.log(`[Simulator] Campaign ${updatedLog.campaignId} marked Completed`);
-      }
-    } catch (err) {
-      console.error('[Simulator] Failed to update log:', err.message);
-    }
-  }, delay);
+// Assign a random delivery status using real-world probabilities
+const pickDeliveryStatus = () => {
+  const rand = Math.random() * 100;
+  if      (rand < 10) return 'Failed';
+  else if (rand < 30) return 'Delivered';
+  else if (rand < 65) return 'Opened';
+  else if (rand < 85) return 'Read';
+  else if (rand < 95) return 'Clicked';
+  else                return 'Converted';
 };
 
 exports.saveAndLaunchCampaign = async (req, res) => {
   try {
     const { name, goal, subjectLine, message, channel, targetSegment } = req.body;
     const safeTargetSegment = sanitizeQuery(targetSegment);
-    
-    // Find audience
+
     const customers = await Customer.find(safeTargetSegment);
 
     const campaign = new Campaign({
-      name, goal, subjectLine, message, channel, targetSegment: safeTargetSegment,
-      status: 'Running', audienceCount: customers.length
+      name, goal, subjectLine, message, channel,
+      targetSegment: safeTargetSegment,
+      status: 'Running',
+      audienceCount: customers.length,
     });
     await campaign.save();
 
     const channelServiceUrl = process.env.CHANNEL_SERVICE_URL;
-    // Only use external channel service if URL is set AND doesn't point to localhost
-    const useExternalService = channelServiceUrl && 
-      !channelServiceUrl.includes('localhost') && 
+    const useExternalService = channelServiceUrl &&
+      !channelServiceUrl.includes('localhost') &&
       !channelServiceUrl.includes('127.0.0.1');
 
-    // Offload to background queue
+    const { clearCache } = require('../services/inMemoryCache');
+
     customers.forEach(customer => {
       addToQueue(async () => {
+        // 1. Create log as Pending
         const log = new CommunicationLog({
           campaignId: campaign._id,
           customerId: customer._id,
           channel,
-          status: 'Pending'
+          status: 'Pending',
         });
         await log.save();
 
-        let recipient = customer.email;
-        if (channel === 'WhatsApp' || channel === 'SMS' || channel === 'RCS') {
-          recipient = customer.phone;
-        }
-
         if (useExternalService) {
-          // External channel service is configured — use it
+          // --- External channel service path ---
+          let recipient = customer.email;
+          if (channel === 'WhatsApp' || channel === 'SMS' || channel === 'RCS') {
+            recipient = customer.phone;
+          }
           try {
             await axios.post(channelServiceUrl, {
               logId: log._id,
@@ -290,15 +260,35 @@ exports.saveAndLaunchCampaign = async (req, res) => {
               channel,
               recipient,
               subjectLine,
-              message: message.replace('[Name]', customer.name)
+              message: message.replace('[Name]', customer.name),
             });
           } catch (err) {
+            console.error('Channel service error:', err.message);
             await CommunicationLog.findByIdAndUpdate(log._id, { status: 'Failed' });
-            console.error('Failed to send to channel service:', err.message);
           }
         } else {
-          // No external channel service — simulate delivery in-process
-          simulateDelivery(log._id);
+          // --- In-process simulator path ---
+          // Simulate network delay INSIDE the queue task so the await keeps
+          // the process alive — no detached setTimeout that can be garbage-collected
+          const delay = Math.floor(Math.random() * 2000) + 1000; // 1-3s
+          await sleep(delay);
+
+          const status = pickDeliveryStatus();
+          await CommunicationLog.findByIdAndUpdate(log._id, { status });
+          clearCache('analytics_dashboard');
+
+          console.log(`[Sim] log ${log._id} → ${status}`);
+        }
+
+        // After every message, check if campaign is fully done
+        const pendingLeft = await CommunicationLog.countDocuments({
+          campaignId: campaign._id,
+          status: 'Pending',
+        });
+        if (pendingLeft === 0) {
+          await Campaign.findByIdAndUpdate(campaign._id, { status: 'Completed' });
+          clearCache('analytics_dashboard');
+          console.log(`[Sim] Campaign ${campaign._id} Completed`);
         }
       });
     });
